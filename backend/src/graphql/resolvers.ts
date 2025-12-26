@@ -1,7 +1,7 @@
 import { GraphQLError } from "graphql/error";
 import { IntValueNode } from "graphql";
 import { apiToken } from "../middleware/token";
-import { Media } from "../types/types";
+import { Media } from "../interface/response";
 
 
 

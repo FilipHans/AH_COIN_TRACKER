@@ -1,6 +1,6 @@
 import { LocalStorage } from "node-localstorage";
 import { GraphQLError } from "graphql";
-import {tokenResp} from '../types/types'
+import {tokenResp} from '../interface/response'
 import dotenv from 'dotenv';
 dotenv.config();
 const localStorage = new LocalStorage('./scratch');
@@ -14,7 +14,7 @@ if (client_id == '' || client_secret == '') throw new GraphQLError('Invalid api 
         }
     }
 )
-export async function apiToken(): Promise<{data: string, ok: Boolean} | {code: number, msg: string, ok: Boolean}> {
+export async function apiToken(): Promise<{data: string, ok: true} | {code: number, msg: string, ok: false}> {
 
     let response;
     const prevToken = localStorage.getItem('token');

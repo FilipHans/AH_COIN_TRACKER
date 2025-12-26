@@ -1,4 +1,3 @@
-// Root object (keyed by character name)
 export interface Characters {
   [characterName: string]: CharacterData;
 }

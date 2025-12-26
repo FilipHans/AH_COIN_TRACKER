@@ -4,14 +4,15 @@ const json = JSON.parse(fs.readFileSync("../data2.json", "utf8"));
 
 const bagKeys = [-1, 0, 1, 2, 3, 4, 5, 6, 7]
 const data : CharacterData[] = Object.values(json);
-type char = Partial<CharacterData>;
 
 const onlyBags: Bag[] = [];
 for (let i = 0; i < data.length - 1; i++)
 {
-    for (const v of bagKeys)
+
+
+    for (const k of bagKeys)
     {
-        const bags = data[i][v] as Bag;    
+        const bags = data[i][k] as Bag;    
         onlyBags.push(bags)
     }
 
