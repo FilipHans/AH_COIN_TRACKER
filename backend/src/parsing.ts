@@ -1,15 +1,23 @@
 import fs from 'fs';
-import {CharacterData , Bag} from './interface/bags.js';
-const json = JSON.parse(fs.readFileSync("../data2.json", "utf8"));
+import path from "path";
+import { fileURLToPath } from "url";
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+import {CharacterData , Bag} from './interface/bags.js';
+// all bags are named -1 to 7
 const bagKeys = [-1, 0, 1, 2, 3, 4, 5, 6, 7]
+const blackListedItems: string[] = ['6948', '184938', '184937', '8952', '12840', '12841']
+export function bagInfo () {
+// const json = JSON.parse(fs.readFileSync("../data2.json", "utf8"));
+const filePath = path.resolve(__dirname, "public", "thunderstrike.json");
+const json = JSON.parse(fs.readFileSync(filePath, "utf8"));
 const data : CharacterData[] = Object.values(json);
+
 
 const onlyBags: Bag[] = [];
 for (let i = 0; i < data.length - 1; i++)
 {
-
-
     for (const k of bagKeys)
     {
         const bags = data[i][k] as Bag;    
@@ -32,5 +40,11 @@ for(const i of R)
         itemMap.set(item, add + Number(vol))
     }
 }
+const returnArray: [key: string, value: number][] = [];
+itemMap.forEach((v, k) => {
+    if(!k.includes(':')) returnArray.push([k, v])
+})
 
-console.log(itemMap)
+const result = returnArray.filter(v => !blackListedItems.includes(v[0]))
+return result;
+}

@@ -1,36 +1,30 @@
 const typeDefs = /* GraphQL */ `
 
 
-type assetValue
-{
-    key: String!,
-    value: String!,
-    file_data_id: Int!
-}
 
-type token {
-  access_token: String,
-  token_type: String,
-  expires_in: Int,
-  sub: String
 
-}
-
-type media
-{
-    assets: assetValue!
+type itemList {  
+    name: String,
+    img: String,  
 }
 
 type fail {
     code: Int,
     msg: String,
-    ok: Boolean,
+    ok: Boolean
 }
-union mediaResult = fail | assetValue
-union tokenResp = token | fail
+
+type Map {
+    name: String,
+    img: String,
+    quantity: Int,
+    itemId: Int
+}
+union mediaResult = fail | itemList
 type Query
 {
     ping : String!,
+    itemList : [Map]!
 }
 type Mutation 
 {

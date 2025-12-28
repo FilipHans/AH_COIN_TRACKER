@@ -17,3 +17,30 @@ export interface tokenResp
   sub: string
 
 }
+
+export interface itemResponse {
+  name: String,
+  item_subclass : {
+    binding?: {
+      type: String,
+      name: String,
+    }
+  } 
+}
+
+export interface apiItemResponse {
+  name: String,
+  img: String,
+  quantity: number,
+  itemId: number 
+}
+export interface itemData {
+  
+  data: {
+    getItem : {
+      name: String,
+      img: String,
+    }
+  }
+
+}

@@ -18,7 +18,6 @@ export async function apiToken(): Promise<{data: string, ok: true} | {code: numb
 
     let response;
     const prevToken = localStorage.getItem('token');
-    console.log(prevToken);
     if (prevToken != undefined)
     {
         return {data: prevToken, ok: true};
